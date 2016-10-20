@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Vector;
 
 import hr.zusk.newsapp.R;
+import hr.zusk.newsapp.ZuskApplication;
 import hr.zusk.newsapp.model.Article;
 
 /**
@@ -23,13 +23,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
         void onArticleSelected(Article article);
     }
 
-    private List<Article> articles = new Vector<>();
+    private List<Article> articles;
     private Context context;
     private OnArticleSelectedListener onArticleSelectedListener;
 
-    public NewsListAdapter(List<Article> articles, Context context, OnArticleSelectedListener listener) {
+    public NewsListAdapter(Context context, OnArticleSelectedListener listener) {
         super();
-        this.articles = articles;
+        this.articles = ZuskApplication.getInstance().getArticleList();
         this.context = context;
         this.onArticleSelectedListener = listener;
     }

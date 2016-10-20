@@ -3,16 +3,17 @@ package hr.zusk.newsapp.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
-import java.util.Vector;
 
-import hr.zusk.newsapp.adapters.NewsListAdapter;
 import hr.zusk.newsapp.R;
+import hr.zusk.newsapp.ZuskApplication;
+import hr.zusk.newsapp.adapters.NewsListAdapter;
 import hr.zusk.newsapp.model.Article;
 import hr.zusk.newsapp.network.SyncHTTPCall;
 
@@ -20,14 +21,14 @@ public class NewsListActivity extends AppCompatActivity {
 
     public static final String EXTRA_ARTICLE = "hr.zusk.newsapp.extra_article";
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
-    private List<Article> articleList = new Vector<>();
+    private List<Article> articleList;
 
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
+    private NewsListAdapter adapter;
 
     private NewsListAdapter.OnArticleSelectedListener listener = new NewsListAdapter.OnArticleSelectedListener() {
         @Override
@@ -53,6 +54,7 @@ public class NewsListActivity extends AppCompatActivity {
                 }
             });
         }
+        swipeContainer.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary));
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -60,15 +62,16 @@ public class NewsListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        if (DEBUG) {
-            loadArticles();
-        } else {
-            if (articleList.size() == 0) {
+        articleList = ZuskApplication.getInstance().getArticleList();
+        if (articleList.size() == 0) {
+            if (!DEBUG) {
                 fetchArticlesAsync(0);
+            } else {
+                loadArticles();
             }
         }
 
-        adapter = new NewsListAdapter(articleList, this, listener);
+        adapter = new NewsListAdapter(this, listener);
         recyclerView.setAdapter(adapter);
     }
 
@@ -104,8 +107,19 @@ public class NewsListActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Article> loadedArticles) {
             super.onPostExecute(loadedArticles);
+
+            swipeContainer.setRefreshing(false);
+            if (loadedArticles.size() == 0) return;
+
             articleList.clear();
             articleList.addAll(loadedArticles);
+            adapter.clear();
+            adapter.addAll(loadedArticles);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
         }
     }
 }

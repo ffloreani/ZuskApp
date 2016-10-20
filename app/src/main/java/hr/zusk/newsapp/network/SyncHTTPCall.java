@@ -10,12 +10,11 @@ import java.util.List;
 import java.util.Vector;
 
 import hr.zusk.newsapp.model.Article;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Created by filipfloreani on 20/10/2016.
@@ -24,6 +23,7 @@ public class SyncHTTPCall {
     private static final String START_PARAM_NAME = "start";
 
     private static SyncHTTPCall instance;
+
     public static SyncHTTPCall getInstance() {
         if (instance == null) {
             instance = new SyncHTTPCall();
@@ -32,11 +32,39 @@ public class SyncHTTPCall {
     }
 
     private static OkHttpClient httpClient;
+
     private static OkHttpClient getHttpClient() {
         if (httpClient == null) {
             httpClient = new OkHttpClient();
         }
         return httpClient;
+    }
+
+
+    public List<Article> getArticles(int pageNum) {
+        List<Article> articles = new Vector<>();
+        Request request = generateRequest(pageNum);
+
+        ResponseBody responseBody = null;
+        try {
+            Response response = getHttpClient().newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code " + response);
+            }
+
+            responseBody = response.body();
+            final String body = responseBody.string();
+
+            articles = parseResponse(body);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (responseBody != null) {
+                responseBody.close();
+            }
+        }
+
+        return articles;
     }
 
     private Request generateRequest(int pageNum) {
@@ -49,45 +77,29 @@ public class SyncHTTPCall {
         return new Request.Builder().url(url).build();
     }
 
-    public List<Article> getArticles(int pageNum) {
-        final List<Article> articles = new Vector<>();
+    private List<Article> parseResponse(String response) {
+        List<Article> articles = new Vector<>();
 
-        Request request = generateRequest(pageNum);
+        Document doc = Jsoup.parse(response);
+        Elements posts = doc.select("div[class*=leading-]");
+        for (Element post : posts) {
+            Article article = new Article();
 
-        getHttpClient().newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+            Elements children = post.children();
+
+            String title = children.get(0).text();
+            String body = "";
+
+            for (int i = 1; i < children.size() - 1; i++) {
+                body += children.get(i).text();
             }
+            if (body.equals("")) continue;
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if(!response.isSuccessful()) {
-                    throw new IOException("Unexpected response code " + response);
-                }
+            article.setTitle(title);
+            article.setBody(body);
 
-                final String responseBody = response.body().string();
-
-                //Parse HTML into articles
-                Document doc = Jsoup.parse(responseBody);
-                Elements posts = doc.getElementsByClass("leading-");
-                for (Element post : posts) {
-                    Article article = new Article();
-
-                    String title = post.child(0).ownText();
-
-                    String body = "";
-                    for (int i = 1; i < post.children().size() - 1; i++) { // Skip title <p> & link <p>
-                        body += post.child(i).ownText();
-                    }
-
-                    article.setTitle(title);
-                    article.setBody(body);
-
-                    articles.add(article);
-                }
-            }
-        });
+            articles.add(article);
+        }
 
         return articles;
     }
