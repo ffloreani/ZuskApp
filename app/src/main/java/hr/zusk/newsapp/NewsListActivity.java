@@ -73,20 +73,20 @@ public class NewsListActivity extends AppCompatActivity {
     }
 
     public void loadArticles() {
-        articleSet.add(new Article("Prvi", "Ovo je moj prvi clanak. Njime testiram prelamanje teksta, sto bi znacilo da ovo mora bit dovoljno dugacko da ispuni 2 reda teksta i prelije se preko, cime ce se pokazati trotocje (ako je ovo uopce rijec na ovom nasem divnom jeziku). Meh, valjda je dosta.", "01/10/2016"));
-        articleSet.add(new Article("Drugi", "Ovo je moj drugi clanak.", "02/10/2016"));
-        articleSet.add(new Article("Treci", "Ovo je moj treci clanak.", "03/10/2016"));
-        articleSet.add(new Article("Cetvrti", "Ovo je moj cetvrti clanak.", "04/10/2016"));
-        articleSet.add(new Article("Peti", "Ovo je moj peti clanak.", "05/10/2016"));
-        articleSet.add(new Article("Sesti", "Ovo je moj sesti clanak.", "06/10/2016"));
-        articleSet.add(new Article("Sedmi", "Ovo je moj sedmi clanak.", "07/10/2016"));
-        articleSet.add(new Article("Osmi", "Ovo je moj osmi clanak.", "08/10/2016"));
-        articleSet.add(new Article("Deveti", "Ovo je moj deveti clanak.", "09/10/2016"));
-        articleSet.add(new Article("Deseti", "Ovo je moj deseti clanak.", "10/10/2016"));
-        articleSet.add(new Article("Jedanaesti", "Ovo je moj jedanaesti clanak.", "11/10/2016"));
-        articleSet.add(new Article("Sto cetrdesest cetvrti", "Evo ne znam vise sta da pisem.", "31/12/2168"));
-        articleSet.add(new Article("Sedamsto sedamdeset cetvrti", "Kriza identiteta.", "03/11/2216"));
-        articleSet.add(new Article("Captains log", "Captains' log, stardate 2256.26.", "26/01/2256"));
+        articleList.add(new Article("Prvi", "Ovo je moj prvi clanak. Njime testiram prelamanje teksta, sto bi znacilo da ovo mora bit dovoljno dugacko da ispuni 2 reda teksta i prelije se preko, cime ce se pokazati trotocje (ako je ovo uopce rijec na ovom nasem divnom jeziku). Meh, valjda je dosta.", "01/10/2016"));
+        articleList.add(new Article("Drugi", "Ovo je moj drugi clanak.", "02/10/2016"));
+        articleList.add(new Article("Treci", "Ovo je moj treci clanak.", "03/10/2016"));
+        articleList.add(new Article("Cetvrti", "Ovo je moj cetvrti clanak.", "04/10/2016"));
+        articleList.add(new Article("Peti", "Ovo je moj peti clanak.", "05/10/2016"));
+        articleList.add(new Article("Sesti", "Ovo je moj sesti clanak.", "06/10/2016"));
+        articleList.add(new Article("Sedmi", "Ovo je moj sedmi clanak.", "07/10/2016"));
+        articleList.add(new Article("Osmi", "Ovo je moj osmi clanak.", "08/10/2016"));
+        articleList.add(new Article("Deveti", "Ovo je moj deveti clanak.", "09/10/2016"));
+        articleList.add(new Article("Deseti", "Ovo je moj deseti clanak.", "10/10/2016"));
+        articleList.add(new Article("Jedanaesti", "Ovo je moj jedanaesti clanak.", "11/10/2016"));
+        articleList.add(new Article("Sto cetrdesest cetvrti", "Evo ne znam vise sta da pisem.", "31/12/2168"));
+        articleList.add(new Article("Sedamsto sedamdeset cetvrti", "Kriza identiteta.", "03/11/2216"));
+        articleList.add(new Article("Captains log", "Captains' log, stardate 2256.26.", "26/01/2256"));
     }
 
     private class ArticleTask extends AsyncTask<Integer, Void, List<Article>> {
