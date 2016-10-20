@@ -50,6 +50,15 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
         return articles.size();
     }
 
+    public void clear() {
+        articles.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Article> items) {
+        articles.addAll(items);
+        notifyDataSetChanged();
+    }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {
 
