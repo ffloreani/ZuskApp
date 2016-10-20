@@ -1,5 +1,5 @@
 # ZuskApp
-Simple reader application for Feast of the Cross church in Osijek, Croatia([website]) 
+Simple Android reader application for Exaltation of the Holy Cross church in Osijek, Croatia([website]) 
 
 ### v1.0
   - Reading news articles & church annoucements
