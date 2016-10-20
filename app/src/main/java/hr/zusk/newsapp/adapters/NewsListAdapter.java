@@ -1,4 +1,4 @@
-package hr.zusk.newsapp;
+package hr.zusk.newsapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Vector;
 
+import hr.zusk.newsapp.R;
 import hr.zusk.newsapp.model.Article;
 
 /**
@@ -64,7 +65,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
 
         View articleView;
         TextView titleView;
-        TextView createdView;
         TextView bodyView;
 
         ArticleViewHolder(View itemView) {
@@ -73,13 +73,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
             articleView = itemView.findViewById(R.id.article_card);
 
             titleView = (TextView) articleView.findViewById(R.id.article_title);
-            createdView = (TextView) articleView.findViewById(R.id.article_created);
             bodyView = (TextView) articleView.findViewById(R.id.article_body);
         }
 
         void setData(final Article article) {
             titleView.setText(article.getTitle());
-            createdView.setText(article.getCreated());
             bodyView.setText(article.getBody());
 
             articleView.setOnClickListener(new View.OnClickListener() {

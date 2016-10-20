@@ -1,9 +1,10 @@
-package hr.zusk.newsapp;
+package hr.zusk.newsapp.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import hr.zusk.newsapp.R;
 import hr.zusk.newsapp.model.Article;
 
 
@@ -12,7 +13,6 @@ public class ArticleDetailsActivity extends AppCompatActivity {
     private Article article;
 
     private TextView title;
-    private TextView created;
     private TextView body;
 
     @Override
@@ -24,7 +24,6 @@ public class ArticleDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         title = (TextView) findViewById(R.id.title);
-        created = (TextView) findViewById(R.id.created);
         body = (TextView) findViewById(R.id.body);
 
         article = getIntent().getParcelableExtra(NewsListActivity.EXTRA_ARTICLE);
@@ -36,7 +35,6 @@ public class ArticleDetailsActivity extends AppCompatActivity {
 
     private void setData() {
         title.setText(article.getTitle());
-        created.setText(article.getCreated());
         body.setText(article.getBody());
     }
 }

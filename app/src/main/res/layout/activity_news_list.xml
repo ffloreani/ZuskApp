@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:padding="16dp"
-    tools:context="hr.zusk.newsapp.NewsListActivity">
+    tools:context="hr.zusk.newsapp.activities.NewsListActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

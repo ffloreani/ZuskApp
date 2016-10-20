@@ -1,5 +1,10 @@
 package hr.zusk.newsapp.network;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
@@ -44,9 +49,8 @@ public class SyncHTTPCall {
         return new Request.Builder().url(url).build();
     }
 
-    //Needs to be run in AsyncTask
     public List<Article> getArticles(int pageNum) {
-        List<Article> articles = new Vector<>();
+        final List<Article> articles = new Vector<>();
 
         Request request = generateRequest(pageNum);
 
@@ -64,9 +68,24 @@ public class SyncHTTPCall {
 
                 final String responseBody = response.body().string();
 
-                // Run HTML article parser and return a set of article objects
+                //Parse HTML into articles
+                Document doc = Jsoup.parse(responseBody);
+                Elements posts = doc.getElementsByClass("leading-");
+                for (Element post : posts) {
+                    Article article = new Article();
 
-                // Store parsed articles in method set
+                    String title = post.child(0).ownText();
+
+                    String body = "";
+                    for (int i = 1; i < post.children().size() - 1; i++) { // Skip title <p> & link <p>
+                        body += post.child(i).ownText();
+                    }
+
+                    article.setTitle(title);
+                    article.setBody(body);
+
+                    articles.add(article);
+                }
             }
         });
 

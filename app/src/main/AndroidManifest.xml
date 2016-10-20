@@ -2,26 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hr.zusk.newsapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewsListActivity">
+        <activity android:name=".activities.NewsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ArticleDetailsActivity"
+        <activity android:name=".activities.ArticleDetailsActivity"
             android:label="@string/article"
-            android:parentActivityName=".NewsListActivity">
+            android:parentActivityName=".activities.NewsListActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NewsListActivity"/>
+                android:value=".activities.NewsListActivity"/>
         </activity>
     </application>
 

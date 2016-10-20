@@ -15,13 +15,12 @@ public class Article implements Parcelable {
     private String title;
     @NonNull
     private String body;
-    @NonNull
-    private String created;
+
+    public Article() {}
 
     public Article(@NonNull String title, @NonNull String body, @NonNull String created) {
         this.title = title;
         this.body = body;
-        this.created = created;
     }
 
     public Article(@NonNull String title, @NonNull String body, @NonNull Date created) {
@@ -31,7 +30,6 @@ public class Article implements Parcelable {
     protected Article(Parcel in) {
         title = in.readString();
         body = in.readString();
-        created = in.readString();
     }
 
     @NonNull
@@ -52,19 +50,6 @@ public class Article implements Parcelable {
         this.body = body;
     }
 
-    @NonNull
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(@NonNull String created) {
-        this.created = created;
-    }
-
-    public void setCreated(@NonNull Date created) {
-        this.created = created.toString();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,15 +58,13 @@ public class Article implements Parcelable {
         Article article = (Article) o;
 
         if (!title.equals(article.title)) return false;
-        if (!body.equals(article.body)) return false;
-        return created.equals(article.created);
+        return body.equals(article.body);
     }
 
     @Override
     public int hashCode() {
         int result = title.hashCode();
         result = 31 * result + body.hashCode();
-        result = 31 * result + created.hashCode();
         return result;
     }
 
@@ -94,9 +77,7 @@ public class Article implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeString(body);
-        parcel.writeString(created);
     }
-
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {
         @Override

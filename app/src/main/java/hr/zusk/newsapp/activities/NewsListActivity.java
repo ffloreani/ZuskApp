@@ -1,4 +1,4 @@
-package hr.zusk.newsapp;
+package hr.zusk.newsapp.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import java.util.Vector;
 
+import hr.zusk.newsapp.adapters.NewsListAdapter;
+import hr.zusk.newsapp.R;
 import hr.zusk.newsapp.model.Article;
 import hr.zusk.newsapp.network.SyncHTTPCall;
 
@@ -42,12 +44,15 @@ public class NewsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news_list);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                fetchArticlesAsync(0);
-            }
-        });
+
+        if (!DEBUG) {
+            swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    fetchArticlesAsync(0);
+                }
+            });
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
