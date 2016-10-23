@@ -4,8 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import java.util.Date;
-
 /**
  * Created by filipfloreani on 17/10/2016.
  */
@@ -15,21 +13,20 @@ public class Article implements Parcelable {
     private String title;
     @NonNull
     private String body;
+    @NonNull
+    private String detailsUrl;
 
     public Article() {}
 
-    public Article(@NonNull String title, @NonNull String body, @NonNull String created) {
+    public Article(@NonNull String title, @NonNull String body) {
         this.title = title;
         this.body = body;
-    }
-
-    public Article(@NonNull String title, @NonNull String body, @NonNull Date created) {
-        this(title, body, created.toString());
     }
 
     protected Article(Parcel in) {
         title = in.readString();
         body = in.readString();
+        detailsUrl = in.readString();
     }
 
     @NonNull
@@ -50,6 +47,15 @@ public class Article implements Parcelable {
         this.body = body;
     }
 
+    @NonNull
+    public String getDetailsUrl() {
+        return detailsUrl;
+    }
+
+    public void setDetailsUrl(@NonNull String detailsUrl) {
+        this.detailsUrl = detailsUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,13 +64,13 @@ public class Article implements Parcelable {
         Article article = (Article) o;
 
         if (!title.equals(article.title)) return false;
-        return body.equals(article.body);
+        return detailsUrl.equals(article.detailsUrl);
     }
 
     @Override
     public int hashCode() {
         int result = title.hashCode();
-        result = 31 * result + body.hashCode();
+        result = 31 * result + detailsUrl.hashCode();
         return result;
     }
 
@@ -77,6 +83,7 @@ public class Article implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeString(body);
+        parcel.writeString(detailsUrl);
     }
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {

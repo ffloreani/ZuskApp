@@ -22,10 +22,6 @@
         <activity android:name=".activities.ArticleDetailsActivity"
             android:label="@string/article"
             android:parentActivityName=".activities.NewsListActivity">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.NewsListActivity"/>
         </activity>
 
         <meta-data

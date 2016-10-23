@@ -15,7 +15,7 @@ import hr.zusk.newsapp.R;
 import hr.zusk.newsapp.ZuskApplication;
 import hr.zusk.newsapp.adapters.NewsListAdapter;
 import hr.zusk.newsapp.model.Article;
-import hr.zusk.newsapp.network.SyncHTTPCall;
+import hr.zusk.newsapp.network.ASyncHTTPCall;
 
 public class NewsListActivity extends AppCompatActivity {
 
@@ -26,8 +26,6 @@ public class NewsListActivity extends AppCompatActivity {
     private List<Article> articleList;
 
     private SwipeRefreshLayout swipeContainer;
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private NewsListAdapter adapter;
 
     private NewsListAdapter.OnArticleSelectedListener listener = new NewsListAdapter.OnArticleSelectedListener() {
@@ -50,58 +48,60 @@ public class NewsListActivity extends AppCompatActivity {
             swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    fetchArticlesAsync(0);
+                    fetchIndexArticlesAsync(0);
                 }
             });
         }
         swipeContainer.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary));
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        articleList = ZuskApplication.getInstance().getArticleList();
-        if (articleList.size() == 0) {
-            if (!DEBUG) {
-                fetchArticlesAsync(0);
-            } else {
-                loadArticles();
-            }
-        }
+        initialDataLoad();
 
         adapter = new NewsListAdapter(this, listener);
         recyclerView.setAdapter(adapter);
     }
 
-    // This should call the HTTP request task
-    public void fetchArticlesAsync(int page) {
-       new ArticleTask().execute(page);
+    public void fetchIndexArticlesAsync(int page) {
+       new IndexArticlesTask().execute(page);
+    }
+
+    private void initialDataLoad() {
+        articleList = ZuskApplication.getInstance().getArticleList();
+        if (articleList.size() == 0) {
+            if (!DEBUG) {
+                fetchIndexArticlesAsync(0);
+            } else {
+                loadArticles();
+            }
+        }
     }
 
     public void loadArticles() {
-        articleList.add(new Article("Prvi", "Ovo je moj prvi clanak. Njime testiram prelamanje teksta, sto bi znacilo da ovo mora bit dovoljno dugacko da ispuni 2 reda teksta i prelije se preko, cime ce se pokazati trotocje (ako je ovo uopce rijec na ovom nasem divnom jeziku). Meh, valjda je dosta.", "01/10/2016"));
-        articleList.add(new Article("Drugi", "Ovo je moj drugi clanak.", "02/10/2016"));
-        articleList.add(new Article("Treci", "Ovo je moj treci clanak.", "03/10/2016"));
-        articleList.add(new Article("Cetvrti", "Ovo je moj cetvrti clanak.", "04/10/2016"));
-        articleList.add(new Article("Peti", "Ovo je moj peti clanak.", "05/10/2016"));
-        articleList.add(new Article("Sesti", "Ovo je moj sesti clanak.", "06/10/2016"));
-        articleList.add(new Article("Sedmi", "Ovo je moj sedmi clanak.", "07/10/2016"));
-        articleList.add(new Article("Osmi", "Ovo je moj osmi clanak.", "08/10/2016"));
-        articleList.add(new Article("Deveti", "Ovo je moj deveti clanak.", "09/10/2016"));
-        articleList.add(new Article("Deseti", "Ovo je moj deseti clanak.", "10/10/2016"));
-        articleList.add(new Article("Jedanaesti", "Ovo je moj jedanaesti clanak.", "11/10/2016"));
-        articleList.add(new Article("Sto cetrdesest cetvrti", "Evo ne znam vise sta da pisem.", "31/12/2168"));
-        articleList.add(new Article("Sedamsto sedamdeset cetvrti", "Kriza identiteta.", "03/11/2216"));
-        articleList.add(new Article("Captains log", "Captains' log, stardate 2256.26.", "26/01/2256"));
+        articleList.add(new Article("Prvi", "Ovo je moj prvi clanak. Njime testiram prelamanje teksta, sto bi znacilo da ovo mora bit dovoljno dugacko da ispuni 2 reda teksta i prelije se preko, cime ce se pokazati trotocje (ako je ovo uopce rijec na ovom nasem divnom jeziku). Meh, valjda je dosta."));
+        articleList.add(new Article("Drugi", "Ovo je moj drugi clanak."));
+        articleList.add(new Article("Treci", "Ovo je moj treci clanak."));
+        articleList.add(new Article("Cetvrti", "Ovo je moj cetvrti clanak."));
+        articleList.add(new Article("Peti", "Ovo je moj peti clanak."));
+        articleList.add(new Article("Sesti", "Ovo je moj sesti clanak."));
+        articleList.add(new Article("Sedmi", "Ovo je moj sedmi clanak."));
+        articleList.add(new Article("Osmi", "Ovo je moj osmi clanak."));
+        articleList.add(new Article("Deveti", "Ovo je moj deveti clanak."));
+        articleList.add(new Article("Deseti", "Ovo je moj deseti clanak."));
+        articleList.add(new Article("Jedanaesti", "Ovo je moj jedanaesti clanak."));
+        articleList.add(new Article("Sto cetrdesest cetvrti", "Evo ne znam vise sta da pisem."));
+        articleList.add(new Article("Sedamsto sedamdeset cetvrti", "Kriza identiteta."));
+        articleList.add(new Article("Captains log", "Captains' log, stardate 2256.26."));
     }
 
-    private class ArticleTask extends AsyncTask<Integer, Void, List<Article>> {
+    private class IndexArticlesTask extends AsyncTask<Integer, Void, List<Article>> {
 
         @Override
         protected List<Article> doInBackground(Integer... integers) {
-            return SyncHTTPCall.getInstance().getArticles(integers[0]);
+            return ASyncHTTPCall.getInstance().getIndexArticles(integers[0]);
         }
 
         @Override
@@ -113,7 +113,7 @@ public class NewsListActivity extends AppCompatActivity {
 
             articleList.clear();
             articleList.addAll(loadedArticles);
-            adapter.clear();
+            //adapter.clear();
             adapter.addAll(loadedArticles);
         }
 

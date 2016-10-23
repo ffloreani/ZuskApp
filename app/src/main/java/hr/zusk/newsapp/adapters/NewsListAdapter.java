@@ -57,7 +57,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
     }
 
     public void addAll(List<Article> items) {
-        articles.addAll(items);
+        for (Article item : items) {
+            if (!articles.contains(item)) {
+                articles.add(item);
+            }
+        }
         notifyDataSetChanged();
     }
 
