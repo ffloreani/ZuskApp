@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -51,7 +52,8 @@ public class NewsListActivity extends AppCompatActivity implements SwipeRefreshL
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        // Adding horizontal divider between views
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
         // Adding scroll listener for loading more data on scroll
         scrollListener = new EndlessScrollListener(layoutManager) {
             @Override

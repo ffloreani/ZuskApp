@@ -8,9 +8,29 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="Theme.AppTheme.Light.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
+    <style name="Theme.AppTheme.Light.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">?attr/colorAccent</item>
         <item name="android:textColorPrimary">@android:color/primary_text_dark</item>
     </style>
 
+    <style name="detailsTitleStyle" parent="Base.TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="detailsBodyStyle" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="articleTitleStyle" parent="detailsTitleStyle">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="articleBodyStyle" parent="detailsBodyStyle">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
+    </style>
 </resources>

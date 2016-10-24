@@ -1,8 +1,8 @@
 # ZuskApp
-Simple Android reader application for Exaltation of the Holy Cross church in Osijek, Croatia([website]) 
+Simple Android reader application for Exaltation of the Holy Cross church in Osijek, Croatia ([website]) 
 
 ### v1.0
-  - Reading news articles & church annoucements
+  - Reading news articles
   
 ### Requirements
 This application requires an active internet connection.

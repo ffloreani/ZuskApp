@@ -57,7 +57,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
         ArticleViewHolder(View itemView) {
             super(itemView);
 
-            articleView = itemView.findViewById(R.id.article_card);
+            articleView = itemView.findViewById(R.id.article_layout);
 
             titleView = (TextView) articleView.findViewById(R.id.article_title);
             bodyView = (TextView) articleView.findViewById(R.id.article_body);
