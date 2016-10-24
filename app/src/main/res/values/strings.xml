@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Župa Uzvišenja svetog Križa</string>
+
     <string name="article">Članak</string>
     <string name="loading">Učitavanje…</string>
+
+    <string name="about">O aplikaciji</string>
+    <string name="about_text">Župa Uzvišenja svetog Križa, Osijek\n\u00A9 2016 Filip Floreani\nVerzija: %s</string>
 </resources>
