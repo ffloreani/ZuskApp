@@ -12,16 +12,16 @@
         android:theme="@style/AppTheme"
         android:name=".ZuskApplication">
 
-        <activity android:name=".activities.NewsListActivity">
+        <activity android:name=".newslist.NewsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ArticleDetailsActivity"
+        <activity android:name=".article.ArticleDetailsActivity"
             android:label="@string/article"
-            android:parentActivityName=".activities.NewsListActivity">
+            android:parentActivityName=".newslist.NewsListActivity">
         </activity>
 
         <meta-data

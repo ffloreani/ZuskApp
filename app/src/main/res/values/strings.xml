@@ -1,12 +1,5 @@
 <resources>
-    <string name="app_name">ZUSK</string>
-    <string name="created">Created:</string>
-    <string name="holder">N/A</string>
-    <string name="lorem_ipsum">
-        Bacon ipsum dolor amet ham, drumstick. Tail short loin tongue turducken burgdoggen. T-bone pork loin andouille tail, sausage corned beef ham short loin burgdoggen kevin jerky
-        swine fatback pancetta. Meatball brisket ball tip strip steak bacon venison. Pancetta ham hock, meatloaf shank
-        shoulder hamburger spare ribs.
-    </string>
-    <string name="article">Article</string>
-    <string name="loading">Učitavanje članka...</string>
+    <string name="app_name">Župa Uzvišenja svetog Križa</string>
+    <string name="article">Članak</string>
+    <string name="loading">Učitavanje…</string>
 </resources>

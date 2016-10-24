@@ -7,7 +7,7 @@ import com.crashlytics.android.Crashlytics;
 import java.util.List;
 import java.util.Vector;
 
-import hr.zusk.newsapp.model.Article;
+import hr.zusk.newsapp.article.Article;
 import io.fabric.sdk.android.Fabric;
 
 /**

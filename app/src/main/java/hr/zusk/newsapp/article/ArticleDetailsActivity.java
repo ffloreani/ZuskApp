@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.activities;
+package hr.zusk.newsapp.article;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -7,8 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import hr.zusk.newsapp.R;
-import hr.zusk.newsapp.model.Article;
+import hr.zusk.newsapp.ZuskApplication;
 import hr.zusk.newsapp.network.ASyncHTTPCall;
+import hr.zusk.newsapp.newslist.NewsListActivity;
 
 
 public class ArticleDetailsActivity extends AppCompatActivity {
@@ -45,7 +46,6 @@ public class ArticleDetailsActivity extends AppCompatActivity {
         new FullArticleTask().execute();
     }
 
-    // TODO: If network is slow, should I cancel the request after certain amount of time?
     private class FullArticleTask extends AsyncTask<Void, Void, Void> {
 
         private ProgressDialog progressDialog = new ProgressDialog(ArticleDetailsActivity.this);

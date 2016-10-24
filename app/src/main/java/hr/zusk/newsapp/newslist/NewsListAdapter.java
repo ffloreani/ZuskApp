@@ -1,6 +1,5 @@
-package hr.zusk.newsapp.adapters;
+package hr.zusk.newsapp.newslist;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import hr.zusk.newsapp.R;
 import hr.zusk.newsapp.ZuskApplication;
-import hr.zusk.newsapp.model.Article;
+import hr.zusk.newsapp.article.Article;
 
 /**
  * Created by filipfloreani on 17/10/2016.
@@ -24,13 +23,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
     }
 
     private List<Article> articles;
-    private Context context;
     private OnArticleSelectedListener onArticleSelectedListener;
 
-    public NewsListAdapter(Context context, OnArticleSelectedListener listener) {
+    public NewsListAdapter(OnArticleSelectedListener listener) {
         super();
         this.articles = ZuskApplication.getInstance().getArticleList();
-        this.context = context;
         this.onArticleSelectedListener = listener;
     }
 
@@ -49,20 +46,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Articl
     @Override
     public int getItemCount() {
         return articles.size();
-    }
-
-    public void clear() {
-        articles.clear();
-        notifyDataSetChanged();
-    }
-
-    public void addAll(List<Article> items) {
-        for (Article item : items) {
-            if (!articles.contains(item)) {
-                articles.add(item);
-            }
-        }
-        notifyDataSetChanged();
     }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {

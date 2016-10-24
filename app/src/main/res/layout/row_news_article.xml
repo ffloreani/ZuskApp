@@ -23,8 +23,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:maxLines="1"
-            android:ellipsize="end"
-            android:text="@string/holder" />
+            android:ellipsize="end" />
 
         <View
             android:id="@+id/divider"
@@ -41,8 +40,7 @@
             android:padding="10dp"
             android:textSize="15sp"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@string/lorem_ipsum" />
+            android:maxLines="2" />
 
     </LinearLayout>
 

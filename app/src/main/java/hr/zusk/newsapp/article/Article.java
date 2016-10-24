@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.model;
+package hr.zusk.newsapp.article;
 
 import android.os.Parcel;
 import android.os.Parcelable;
