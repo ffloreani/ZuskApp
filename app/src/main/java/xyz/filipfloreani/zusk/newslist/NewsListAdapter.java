@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.newslist;
+package xyz.filipfloreani.zusk.newslist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import hr.zusk.newsapp.R;
-import hr.zusk.newsapp.ZuskApplication;
-import hr.zusk.newsapp.article.Article;
+import xyz.filipfloreani.zusk.R;
+import xyz.filipfloreani.zusk.ZuskApplication;
+import xyz.filipfloreani.zusk.article.Article;
 
 /**
  * Created by filipfloreani on 17/10/2016.

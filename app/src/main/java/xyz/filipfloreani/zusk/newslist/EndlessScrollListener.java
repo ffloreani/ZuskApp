@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.newslist;
+package xyz.filipfloreani.zusk.newslist;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

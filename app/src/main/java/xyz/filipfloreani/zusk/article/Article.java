@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.article;
+package xyz.filipfloreani.zusk.article;
 
 import android.os.Parcel;
 import android.os.Parcelable;

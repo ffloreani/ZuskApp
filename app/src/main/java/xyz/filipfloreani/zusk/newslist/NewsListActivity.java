@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.newslist;
+package xyz.filipfloreani.zusk.newslist;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,12 +17,12 @@ import android.view.MenuItem;
 
 import java.util.List;
 
-import hr.zusk.newsapp.BuildConfig;
-import hr.zusk.newsapp.R;
-import hr.zusk.newsapp.ZuskApplication;
-import hr.zusk.newsapp.article.Article;
-import hr.zusk.newsapp.article.ArticleDetailsActivity;
-import hr.zusk.newsapp.network.ASyncHTTPCall;
+import xyz.filipfloreani.zusk.BuildConfig;
+import xyz.filipfloreani.zusk.R;
+import xyz.filipfloreani.zusk.ZuskApplication;
+import xyz.filipfloreani.zusk.article.Article;
+import xyz.filipfloreani.zusk.article.ArticleDetailsActivity;
+import xyz.filipfloreani.zusk.network.ASyncHTTPCall;
 
 public class NewsListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -68,6 +68,9 @@ public class NewsListActivity extends AppCompatActivity implements SwipeRefreshL
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
+
+        if(getSupportActionBar() == null) return;
+        getSupportActionBar().setTitle(getString(R.string.zusk));
 
         // Load data on app start
         articleList = ZuskApplication.getInstance().getArticleList();

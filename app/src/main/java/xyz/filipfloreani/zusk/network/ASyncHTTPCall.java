@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.network;
+package xyz.filipfloreani.zusk.network;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
-import hr.zusk.newsapp.article.Article;
+import xyz.filipfloreani.zusk.article.Article;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

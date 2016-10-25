@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hr.zusk.newsapp">
+    package="xyz.filipfloreani.zusk">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -10,9 +10,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".ZuskApplication">
+        android:name="xyz.filipfloreani.zusk.ZuskApplication">
 
-        <activity android:name=".newslist.NewsListActivity"
+        <activity android:name="xyz.filipfloreani.zusk.newslist.NewsListActivity"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".article.ArticleDetailsActivity"
+        <activity android:name="xyz.filipfloreani.zusk.article.ArticleDetailsActivity"
             android:label="@string/article"
-            android:parentActivityName=".newslist.NewsListActivity"
+            android:parentActivityName="xyz.filipfloreani.zusk.newslist.NewsListActivity"
             android:screenOrientation="portrait">
         </activity>
 

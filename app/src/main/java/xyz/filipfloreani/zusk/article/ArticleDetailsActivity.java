@@ -1,4 +1,4 @@
-package hr.zusk.newsapp.article;
+package xyz.filipfloreani.zusk.article;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import hr.zusk.newsapp.R;
-import hr.zusk.newsapp.ZuskApplication;
-import hr.zusk.newsapp.network.ASyncHTTPCall;
-import hr.zusk.newsapp.newslist.NewsListActivity;
+import xyz.filipfloreani.zusk.R;
+import xyz.filipfloreani.zusk.network.ASyncHTTPCall;
+import xyz.filipfloreani.zusk.newslist.NewsListActivity;
 
 
 public class ArticleDetailsActivity extends AppCompatActivity {

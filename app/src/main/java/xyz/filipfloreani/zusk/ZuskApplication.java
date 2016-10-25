@@ -1,4 +1,4 @@
-package hr.zusk.newsapp;
+package xyz.filipfloreani.zusk;
 
 import android.app.Application;
 
@@ -7,7 +7,7 @@ import com.crashlytics.android.Crashlytics;
 import java.util.List;
 import java.util.Vector;
 
-import hr.zusk.newsapp.article.Article;
+import xyz.filipfloreani.zusk.article.Article;
 import io.fabric.sdk.android.Fabric;
 
 /**

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Župa Uzvišenja svetog Križa</string>
+    <string name="app_name">ŽUsK App</string>
+
+    <string name="zusk">Župa Uzvišenja svetog Križa</string>
 
     <string name="article">Članak</string>
     <string name="loading">Učitavanje…</string>
